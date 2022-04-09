@@ -1,0 +1,77 @@
+_LOG_GROUP_NAME : /aws/lambda/producer-function
+LAMBDA_TASK_ROOT : /var/task
+LD_LIBRARY_PATH : /var/lang/lib:/lib64:/usr/lib64:/var/runtime:/var/runtime/lib:/var/task:/var/task/lib:/opt/lib
+AWS_LAMBDA_RUNTIME_API : 127.0.0.1:9001
+AWS_LAMBDA_LOG_STREAM_NAME : 2022/04/09/[$LATEST]9a326862b509a27a2dff9a80e049800e
+_LAMBDA_SHARED_MEM_FD : 11
+AWS_EXECUTION_ENV : AWS_Lambda_python3.8
+_LAMBDA_RUNTIME_LOAD_TIME : 1530232235231
+AWS_XRAY_DAEMON_ADDRESS : 169.254.79.2:2000
+AWS_LAMBDA_FUNCTION_NAME : producer-function
+PATH : /var/lang/bin:/usr/local/bin:/usr/bin/:/bin:/opt/bin
+_LAMBDA_LOG_FD : 9
+TARGET_STREAM : user-stream
+AWS_DEFAULT_REGION : us-east-1
+PWD : /var/task
+AWS_SECRET_ACCESS_KEY : test
+LAMBDA_RUNTIME_DIR : /var/runtime
+LANG : en_US.UTF-8
+TZ : :UTC
+AWS_REGION : us-east-1
+AWS_ACCESS_KEY_ID : test
+SHLVL : 0
+HOME : /home/sbx_user1051
+AWS_LAMBDA_FUNCTION_INVOKED_ARN : arn:aws:lambda:us-east-1:000000000000:function:producer-function
+_AWS_XRAY_DAEMON_ADDRESS : 169.254.79.2
+_AWS_XRAY_DAEMON_PORT : 2000
+_X_AMZN_TRACE_ID : Root=1-dc99d00f-c079a84d433534434534ef0d;Parent=91ed514f1e5c03b2;Sampled=1
+_LAMBDA_SB_ID : 7
+AWS_XRAY_CONTEXT_MISSING : LOG_ERROR
+_LAMBDA_CONSOLE_SOCKET : 16
+_HANDLER : lambda_function.producer_handler
+DOCKER_LAMBDA_USE_STDIN : 1
+AWS_LAMBDA_FUNCTION_MEMORY_SIZE : 1536
+PYTHONPATH : /var/runtime
+Here here
+[ERROR] EndpointConnectionError: Could not connect to the endpoint URL: "http://localhost:4566/"
+Traceback (most recent call last):
+  File "/var/task/lambda_function.py", line 45, in producer_handler
+    response = client.add_tags_to_stream(
+  File "/var/runtime/botocore/client.py", line 357, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/var/runtime/botocore/client.py", line 662, in _make_api_call
+    http, parsed_response = self._make_request(
+  File "/var/runtime/botocore/client.py", line 682, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/var/runtime/botocore/endpoint.py", line 102, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/var/runtime/botocore/endpoint.py", line 136, in _send_request
+    while self._needs_retry(attempts, operation_model, request_dict,
+  File "/var/runtime/botocore/endpoint.py", line 253, in _needs_retry
+    responses = self._event_emitter.emit(
+  File "/var/runtime/botocore/hooks.py", line 356, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/var/runtime/botocore/hooks.py", line 228, in emit
+    return self._emit(event_name, kwargs)
+  File "/var/runtime/botocore/hooks.py", line 211, in _emit
+    response = handler(**kwargs)
+  File "/var/runtime/botocore/retryhandler.py", line 183, in __call__
+    if self._checker(attempts, response, caught_exception):
+  File "/var/runtime/botocore/retryhandler.py", line 250, in __call__
+    should_retry = self._should_retry(attempt_number, response,
+  File "/var/runtime/botocore/retryhandler.py", line 277, in _should_retry
+    return self._checker(attempt_number, response, caught_exception)
+  File "/var/runtime/botocore/retryhandler.py", line 316, in __call__
+    checker_response = checker(attempt_number, response,
+  File "/var/runtime/botocore/retryhandler.py", line 222, in __call__
+    return self._check_caught_exception(
+  File "/var/runtime/botocore/retryhandler.py", line 359, in _check_caught_exception
+    raise caught_exception
+  File "/var/runtime/botocore/endpoint.py", line 200, in _do_get_response
+    http_response = self._send(request)
+  File "/var/runtime/botocore/endpoint.py", line 269, in _send
+    return self.http_session.send(request)
+  File "/var/runtime/botocore/httpsession.py", line 283, in send
+    raise EndpointConnectionError(endpoint_url=request.url, error=e)
+[32mEND RequestId: 5031c01a-3dc9-17aa-712b-6f4f54ff37db[0m
+[32mREPORT RequestId: 5031c01a-3dc9-17aa-712b-6f4f54ff37db	Init Duration: 220.79 ms	Duration: 3000.00 ms	Billed Duration: 3000 ms	Memory Size: 1536 MB	Max Memory Used: 39 MB	[0m

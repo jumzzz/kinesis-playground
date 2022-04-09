@@ -1,0 +1,20 @@
+{
+    "RoleARN": "arn:aws:iam::000000000000:role/firehose-role",
+    "BucketARN": "arn:aws:s3::user-stream-bucket",
+    "ProcessingConfiguration": {
+      "Enabled": true,
+      "Processors": [
+        {
+          "Type": "Lambda",
+          "Parameters": [
+            {
+              "ParameterName": "arn:aws:lambda:us-east-1:000000000000:function:transformer-function",
+              "ParameterValue": "0"
+            }
+          ]
+        }
+
+      ]
+    },
+    "S3BackupMode": "Disabled"
+}

@@ -1,0 +1,40 @@
+{
+    "DeliveryStreamName": "firehose-user-streams",
+    "DeliveryStreamType": "DirectPut",
+    "ExtendedS3DestinationConfiguration": {
+        "RoleARN": "arn:aws:iam::000000000000:role/super-role",
+        "BucketARN": "arn:aws:s3:::user-stream-bucket",
+        "Prefix": "test-log",
+        "ErrorOutputPrefix": "test-error-log",
+        "BufferingHints": {
+            "SizeInMBs": 1,
+            "IntervalInSeconds": 60
+        },
+        "CompressionFormat": "UNCOMPRESSED",
+        "CloudWatchLoggingOptions": {
+            "Enabled": false,
+            "LogGroupName": "",
+            "LogStreamName": ""
+        },
+        "ProcessingConfiguration": {
+            "Enabled": true,
+            "Processors": [
+                {
+                    "Type": "Lambda",
+                    "Parameters": [
+                        {
+                            "ParameterName": "LambdaArn",
+                            "ParameterValue": "arn:aws:lambda:us-east-1:000000000000:function:transformer-function"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "Tags": [
+        {
+          "Key": "tagKey",
+          "Value": "tagValue"
+        }
+      ]
+}
